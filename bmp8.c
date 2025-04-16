@@ -68,8 +68,21 @@ void bmp8_brightness(t_bmp8 * img, int value) {
 /*
 Role:
 Parameter:
+    *img: Pointer to the t_bmp8 structure.
+    **kernel (pointer of a 2D arrays of float): Represent the matrix (the filter) to be applied on the image.
+    kernelSize (integer): Size of the kernel (the size must be odd).
 Result: Return nothing as a void function.
 */
 void bmp8_applyFilter(t_bmp8 * img, float ** kernel, int kernelSize) {
 
+    if (kernelSize % 2 != 1) {
+        printf("Kernel Size must be odd.\n");
+    }
+
+    int halfKernelSize = kernelSize / 2;
+    for (int i = - halfKernelSize; i < halfKernelSize; i++) {
+        for (int j = - halfKernelSize; j < halfKernelSize; j++) {
+
+        }
+    }
 }
