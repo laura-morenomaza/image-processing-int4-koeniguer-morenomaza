@@ -1,3 +1,8 @@
+#include <bmp8.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 // Offsets for the BMP header
 #define BITMAP_MAGIC 0x00 // offset 0
 #define BITMAP_SIZE 0x02 // offset 2
@@ -14,14 +19,6 @@
 // Constant for the color depth
 #define DEFAULT_DEPTH 0x18 // 24
 
-typedef struct {
-    t_bmp_header header;
-    t_bmp_info header_info;
-    int width;
-    int height;
-    int colorDepth;
-    t_pixel **data;
-} t_bmp24;
 
 typedef struct {
     uint16_t type;
@@ -51,15 +48,32 @@ typedef struct {
     uint8_t blue;
 } t_pixel;
 
+typedef struct {
+    t_bmp_header header;
+    t_bmp_info header_info;
+    int width;
+    int height;
+    int colorDepth;
+    t_pixel **data;
+} t_bmp24;
+
 t_pixel ** bmp24_allocateDataPixels (int width, int height);
 void bmp24_freeDataPixels (t_pixel ** pixels, int height);
 t_bmp24 * bmp24_allocate (int width, int height, int colorDepth);
-void bmp24_free (t_bmp * img);
+void bmp24_free (t_bmp24 * img);
 
 t_bmp24 * bmp24_loadImage (const char * filename);
-void bmp24_saveImage (t_bmp * img, const char * filename);
+void bmp24_saveImage (t_bmp24 * img, const char * filename);
 
-void bmp24_readPixelValue (t_bmp * image, int x, int y, FILE * file);
-void bmp24_readPixelData (t_bmp * image, FILE * file);
-void bmp24_writePixelValue (t_bmp * image, int x, int y, FILE * file);
-void bmp24_writePixelData (t_bmp * image, FILE * file);
+void bmp24_readPixelValue (t_bmp24 * image, int x, int y, FILE * file);
+void bmp24_readPixelData (t_bmp24 * image, FILE * file);
+void bmp24_writePixelValue (t_bmp24 * image, int x, int y, FILE * file);
+void bmp24_writePixelData (t_bmp24 * image, FILE * file);
+
+void bmp24_negative (t_bmp24 * img);
+void bmp24_grayscale (t_bmp24 * img);
+void bmp24_brightness (t_bmp24 * img, int value);
+t_pixel bmp24_convolution (t_bmp24 * img, int x, int y, float ** kernel, int kernelSize);
+
+void file_rawWrite (uint32_t position, void * buffer, uint32_t size, size_t n, FILE * file);
+void file_rawWrite (uint32_t position, void * buffer, uint32_t size, size_t n, FILE * file) ;
