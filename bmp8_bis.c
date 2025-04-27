@@ -4,48 +4,50 @@
 #include "bmp8_bis.h"
 
 /*
-Role:
+Role: load an image
 Parameter:
-Result:
+    filename: a file
+Result: an image of type t_bmp8
 */
 t_bmp8 * bmp8_loadImage(const char * filename) {
     FILE *file = fopen(filename, "rb");
+    t_bmp8 * img = malloc(sizeof(t_bmp8));
     if (file == NULL) {
-        printf("Error");
+        printf("Error, file inexistant.\n");
         return NULL;
     }
 
-    t_bmp8 *img = (t_bmp8 *)malloc(sizeof(t_bmp8));
-    if (img == NULL) {
-        fclose(file);
-        printf("Error");
-        return NULL;
-    }
-
-    // Lire en-tête
     fread(img->header, sizeof(unsigned char), 54, file);
 
-    // Extraire infos
     img->width = *(unsigned int *)&img->header[18];
     img->height = *(unsigned int *)&img->header[22];
     img->colorDepth = *(unsigned short *)&img->header[28];
     img->dataSize = *(unsigned int *)&img->header[34];
 
     if (img->colorDepth != 8) {
-        fprintf(stderr, "Error: Only 8-bit images are supported.\n");
-        free(img);
+        printf("Error, not an 8-bit image.\n");
         fclose(file);
         return NULL;
     }
+    fread(img->colorTable, sizeof(unsigned char), 1024, file);
+    img->data = malloc(img->dataSize);
+    fread(img->data, sizeof(unsigned char), img->dataSize, file);
+
+    fclose(file);
+    return img;
 }
 
 /*
-Role:
+Role:free the memory allocated for an image
 Parameter:
-Result:
+    *img:  pointer to a t_bmp8 object
+Result: Return nothing as a void function.
 */
 void bmp8_free(t_bmp8 * img) {
-
+    if (img != NULL) {
+        free(img->data);
+        free(img);
+    }
 }
 
 /*
@@ -65,12 +67,12 @@ void bmp8_negative(t_bmp8 * img) {
 Role: transforms a grayscale image into a binary image
 Parameter:
     *img: Pointer to the t_bmp8 structure.
-    treshold: an integer
+    threshold: an integer
 Result: Return nothing as a void function.
 */
 void bmp8_threshold(t_bmp8 * img, int threshold) {
     for (int i = 0; i < img->width * img->height; i++) {
-        if (img->data[i] < treshold) {
+        if (img->data[i] < threshold) {
             img->data[i] = 0;
         }
         else {
