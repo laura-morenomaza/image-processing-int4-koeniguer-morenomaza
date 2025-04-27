@@ -32,14 +32,13 @@ void bmp8_saveImage(const char * filename, t_bmp8 * img) {
         return;
     }
 }
-
 /*
 Role: Display informations on the image.
 Parameter:
     *img: Pointer to the t_bmp8 structure.
 Result: Return nothing as a void function.
 */
-void bmp8_printInfo(t_bmp8 * img) {
+bmp8_printInfo(t_bmp8 * img) {
     printf("Image Info:\n");
     printf("\tWidth: %d\n\tHeight: %d\n", img->width, img->height);
     printf("\tColor depth: %d\n\tData Size: %d\n", img->colorDepth, img->dataSize);
@@ -69,7 +68,7 @@ void bmp8_brightness(t_bmp8 * img, int value) {
 Role:
 Parameter:
     *img: Pointer to the t_bmp8 structure.
-    **kernel (pointer of a 2D arrays of float): Represent the matrix (the filter) to be applied on the image.
+    **kernel (pointer of a 2D arrays of float): Represent the matrix (mask or kernel) to be applied on the image.
     kernelSize (integer): Size of the kernel (the size must be odd).
 Result: Return nothing as a void function.
 */
@@ -82,7 +81,6 @@ void bmp8_applyFilter(t_bmp8 * img, float ** kernel, int kernelSize) {
     int halfKernelSize = kernelSize / 2;
     for (int i = - halfKernelSize; i < halfKernelSize; i++) {
         for (int j = - halfKernelSize; j < halfKernelSize; j++) {
-
         }
     }
 }
