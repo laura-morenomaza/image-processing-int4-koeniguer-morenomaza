@@ -1,13 +1,10 @@
 # image-processing
 
 ## 1. General presentation
-**Project title:** pyfort-koeniguer-morenomaza-int4
+**Project title:** image-processing-int4-koeniguer-morenomaza
 ### Contributors
-- Lucien Forissier (luckyluluc): creator of the game
-- Clément Koeniguer (coolclem): creator of the game
-- Laura Moreno Maza (laura-morenomaza): creator of the game
-- Adrien Pelous: creator of the game
-- Félix Schmider (felixschmider): creator of the game
+- Clément Koeniguer (coolclem): creator
+- Laura Moreno Maza (laura-morenomaza): creator
 ### Description
 
 ### Key features
