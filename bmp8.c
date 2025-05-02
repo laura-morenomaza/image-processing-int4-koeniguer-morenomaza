@@ -2,6 +2,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "bmp8.h"
+#include "bmp8_bis.h"
 
 /*
 Role: Save an image in a file name (path).
@@ -79,8 +81,5 @@ void bmp8_applyFilter(t_bmp8 * img, float ** kernel, int kernelSize) {
     }
 
     int halfKernelSize = kernelSize / 2;
-    for (int i = - halfKernelSize; i < halfKernelSize; i++) {
-        for (int j = - halfKernelSize; j < halfKernelSize; j++) {
-        }
-    }
-}
+    for (int x = 0; i < kernelSize; i++) {
+        for (int y = 0; j < kernelSize; j++) {
