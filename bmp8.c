@@ -20,14 +20,14 @@ void bmp8_saveImage(const char * filename, t_bmp8 * img) {
     }
 
     //
-    size_t write = fwrite(img,sizeof(t_bmp8), 1, filename);
+    size_t write = fwrite(img,sizeof(t_bmp8), 1, open );
     if (write != 1) {
         printf ("Error writing to file.\n");
         return;
     }
 
     //
-    int close = fclose(filename);
+    int close = fclose(open);
     if (close != 0) {
         printf ("Error closing file.\n");
         return;
@@ -84,11 +84,11 @@ void bmp8_applyFilter(t_bmp8 * img, float ** kernel, int kernelSize) {
             int sum = 0;
             for (int i = - halfKernelSize; i < halfKernelSize; i++) {
                 for (int j = - halfKernelSize; j < halfKernelSize; j++) {
-                    sum += (img -> data[((x - i)) * (img ->width) + (y - j)]) * kernel[halfKernelSize - i][halfKernelSize - j];
+                    sum += (img -> data[(x - i) * (img->width) + (y - j)]) * kernel[halfKernelSize - i][halfKernelSize - j];
                 }
             }
             t_bmp8 *new_image;
-            t_bmp8 *new_kernel= img -> data[x*(img-> width) + y];
+            t_bmp8 *new_kernel= img-> data[x*(img->width) + y];
         }
     }
 }
