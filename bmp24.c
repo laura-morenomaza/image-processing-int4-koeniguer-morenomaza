@@ -3,6 +3,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <bmp24.h>
+#include <bmp24_bis.h>
+
+void bmp24_freeDataPixels (t_pixel ** pixels, int height) {
+
+
+
 
 /*
 * @brief Set the file cursor to the position position in the file file,
