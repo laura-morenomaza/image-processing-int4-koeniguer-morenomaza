@@ -1,3 +1,9 @@
+#include <bmp8.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <bmp24.h>
+
 /*
 * @brief Set the file cursor to the position position in the file file,
 * then read n elements of size size from the file into the buffer.
