@@ -1,8 +1,3 @@
-# Role:
-
-# Role:
-# Parameter:
-# Result :
 typedef struct {
     unsigned char header[54];
     unsigned char colorTable[1024];
