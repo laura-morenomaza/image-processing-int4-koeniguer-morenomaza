@@ -86,7 +86,7 @@ void bmp8_applyFilter(t_bmp8 * img, float ** kernel, int kernelSize) {
             sum = 0;
             for (int i = - halfKernelSize; i < halfKernelSize; i++) {
                 for (int j = - halfKernelSize; j < halfKernelSize; j++) {
-                    sum += (img -> data[((x - i)) * width + (y - j)]) * kernel[(halfKernelSize - i][halfKernelSize - j];
+                    sum += (img -> data[((x - i)) * width + (y - j)]) * kernel[halfKernelSize - i][halfKernelSize - j];
                 }
             }
             t_bmp8 *new_image;
