@@ -88,11 +88,10 @@ void bmp8_applyFilter(t_bmp8 * img, float ** kernel, int kernelSize) {
                 }
             }
             t_bmp8 *new_image;
-            t_bmp8 *new_kernel= img-> data[x*(img->width) + y];
+            t_bmp8 *new_kernel= (t_bmp8 *) img-> data[x*(img->width) + y];
         }
     }
 }
-
 
 /*-----------------------------------------bmp8_bis below----------------------------------------------------------*/
 
