@@ -75,7 +75,6 @@ Parameter:
 Result: Return nothing as a void function.
 */
 void bmp8_applyFilter(t_bmp8 * img, float ** kernel, int kernelSize) {
-
     if (kernelSize % 2 != 1) {
         printf("Kernel Size must be odd.\n");
     }
